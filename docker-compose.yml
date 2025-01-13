@@ -1,0 +1,25 @@
+networks:
+  dev:
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - dev
+    
+
+  backend:
+    build: ./database
+    networks:
+      - dev
+
+  frontend:
+    build: ./cretieve
+    networks:
+      - dev

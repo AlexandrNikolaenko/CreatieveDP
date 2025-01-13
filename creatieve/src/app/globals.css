@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: 'Dela Gothic One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/dela-gothic-one-v17-cyrillic_latin-regular.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/unbounded-v8-cyrillic_latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/unbounded-v8-cyrillic_latin-700.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/montserrat-v29-cyrillic_latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Shantell Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/shantell-sans-v10-cyrillic_latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Shantell Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../../fonts/shantell-sans-v10-cyrillic_latin-700italic.woff2') format('woff2');
+}
+
+input{
+  background-color: white;
+}
+
+input, textarea, select {
+  appearance: none;
+}
+
+*::-webkit-scrollbar{
+  display: none;
+}
+
+.wrapper {
+  max-width: 1360px;
+  margin: 0 40px;
+}
+
+@media screen and (max-width: 1100px) {
+  .wrapper {
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    margin: 0 auto;
+  }
+}
+
+/* .slideButton{
+  background-color: #9146E1;
+} 
+
+.slideButton:hover:first-child{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #7D34CC var(--tw-gradient-from-position);
+  --tw-gradient-to: #9146E1 var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.slideButton:hover:last-child{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #9146E1 var(--tw-gradient-from-position);
+  --tw-gradient-to: #7D34CC var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+} */
+
+.productBlock, .landingBlock, .siteBlock, .visitBlock, .appBlock{
+  background: white;
+  transition-property: all;
+  transition-duration: .3s;
+}
+
+.landingBlock:hover, .landingBlock:active{
+  --tw-gradient-from: #2AC900 var(--tw-gradient-from-position);
+  --tw-gradient-to: #02D6EE var(--tw-gradient-to-position);
+}
+
+.siteBlock:hover, .siteBlock:active{
+  --tw-gradient-from: #0011FF var(--tw-gradient-from-position);
+  --tw-gradient-to: #07E6FF var(--tw-gradient-to-position);
+}
+
+.appBlock:hover,.appBlock:active{
+  --tw-gradient-from: #FF0101 var(--tw-gradient-from-position);
+  --tw-gradient-to: #F6BC19 var(--tw-gradient-to-position);
+}
+
+.visitBlock:hover, .visitBlock:active{
+  --tw-gradient-from: #680DE7 var(--tw-gradient-from-position);
+  --tw-gradient-to: #F91ABA var(--tw-gradient-to-position);
+}
+
+.productBlock:hover, .productBlock:active{
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  background: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  transition-property: all;
+  transition-duration: .3s;
+}
