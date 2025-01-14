@@ -9,34 +9,42 @@ import Contact from "./contact";
 // import Footer from "./components/footer";
 import dynamic from "next/dynamic";
 
-// const DynamicComponentWithNoSSR = dynamic(
-//     () => import('../components/BrowserOnlyComponent'),
-//     { ssr: false }
-// )
+const DynamicHeader = dynamic(
+    () => import('./header'),
+    { ssr: false }
+)
 
-function ClientComponent({name}) {
-  return dynamic(
-      () => import(`./${name}`),
-      { ssr: false }
-  )
-}
+const DynamicProducts = dynamic(
+    () => import('./products'),
+    { ssr: false }
+)
+
+const DynamicWhyWe = dynamic(
+    () => import('./whywe'),
+    { ssr: false }
+)
+
+const DynamicFooter = dynamic(
+    () => import('./footer'),
+    { ssr: false }
+)
 
 export default function Main() {
     return (
     <>
-        <ClientComponent name={'header'}/>
+        <DynamicHeader/>
         {/* <Header /> */}
         {/* <ClientComponent name={'about'}/> */}
         <About />
-        <ClientComponent name={'products'}/>
+        <DynamicProducts/>
         {/* <Products /> */}
-        <ClientComponent name={'whywe'}/>
+        <DynamicWhyWe/>
         {/* <WhyWe /> */}
         {/* <ClientComponent name={'portfolio'}/> */}
         <Portfolio />
         {/* <ClientComponent name={'contact'}/> */}
         <Contact />
-        <ClientComponent name={'footer'}/>
+        <DynamicFooter/>
         {/* <Footer /> */}
     </>
     )

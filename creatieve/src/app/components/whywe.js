@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { DynamicComponentWithNoSSR } from "./optData";
 
 let reasons = [
     {
@@ -86,7 +85,6 @@ export default function WhyWe() {
                     {stages.map(stage => <Stage key={stage.id} stage={stage} isShow={stage.id <= showId}/>)}
                 </ul>
             </div>
-            <DynamicComponentWithNoSSR />
         </section>
     )
 }

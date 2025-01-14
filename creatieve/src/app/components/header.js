@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import scrollToBlock from "./optData";
 import Link from "next/link";
-import { DynamicComponentWithNoSSR } from "./optData";
 
 export default function Header() {
     let [isHidden, setIsHidden] = useState(false);
@@ -91,7 +90,6 @@ export default function Header() {
                 <HeaderButton text={'Портфолио'} blockId={4} action={() => setIsOpen(!isOpen)}/>
                 <HeaderButton text={'Заказать'} blockId={5} action={() => setIsOpen(!isOpen)}/>
             </nav>}
-            <DynamicComponentWithNoSSR />
         </>
     )
 }

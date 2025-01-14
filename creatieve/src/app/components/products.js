@@ -5,8 +5,6 @@ import Image from "next/image";
 import OrderButton from "./buttons";
 import { products } from "./optData";
 import Link from "next/link";
-import { DynamicComponentWithNoSSR } from "./optData";
-
 
 export default function Products() {
     let [showId, setShowId] = useState(1);
@@ -57,7 +55,6 @@ export default function Products() {
                     </div>
                 </div>
             </div>
-            <DynamicComponentWithNoSSR />
         </section>
     )
 }
