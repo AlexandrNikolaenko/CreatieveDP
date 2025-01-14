@@ -5,11 +5,11 @@ import Image from "next/image";
 import OrderButton from "./buttons";
 import { products } from "./optData";
 import Link from "next/link";
+import { DynamicComponentWithNoSSR } from "./optData";
 
 
 export default function Products() {
     let [showId, setShowId] = useState(1);
-    let scrollFunc = useRef(setShowId);
 
     useEffect(() => {
         let slideProd = document.getElementById("slideProd");
@@ -57,6 +57,7 @@ export default function Products() {
                     </div>
                 </div>
             </div>
+            <DynamicComponentWithNoSSR />
         </section>
     )
 }
