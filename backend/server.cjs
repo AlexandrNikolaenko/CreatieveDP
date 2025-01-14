@@ -4,14 +4,13 @@ const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
 const fs = require('fs');
 const toml = require('toml');
-const { error } = require('console');
 
 const config = toml.parse(fs.readFileSync('./config.toml', 'utf-8'));
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // true for port 465, false for other ports
+    secure: true,
     auth: {
       user: "alexnikol092004@gmail.com",
       pass: config.gmail.emailkey,
@@ -59,7 +58,7 @@ app.post('/ordercall', function (request, response) {
 
     if (checkName() && checkTel()) {
         console.log('Mail is sent')
-        // sendMail();
+        sendMail();
         response.status(200);
         response.send({error: null});
     } else if (!checkName() && checkTel()) {

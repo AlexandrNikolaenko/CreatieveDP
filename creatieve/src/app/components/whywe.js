@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useState } from "react";
+
 let reasons = [
     {
         id: 1,
@@ -40,8 +44,34 @@ let stages = [
 ]
 
 export default function WhyWe() {
+    let [showId, setShowId] = useState(0);
+
+    useEffect(() => {
+        let section = [document.getElementById('3').getBoundingClientRect().top + window.scrollY, document.getElementById('3').getBoundingClientRect().bottom + window.scrollY];
+        let points = [];
+        let showPoints = [];
+        stages.forEach(stage => {
+            let point = document.getElementById('stage' + stage.id).getBoundingClientRect().top + window.scrollY + 100;
+            points.push(point);
+            if (window.scrollY + window.innerHeight > point) showPoints.push(point);
+        });
+
+        if (showPoints.length > 0 && (showId == 0 || showId == showPoints.length)) setShowId(showPoints.length);
+        function scrolling () {
+            if (window.scrollY + window.innerHeight > section[0] && section[1] > window.scrollY && points.length != showPoints.length) {
+                points.forEach(point => {
+                    if (window.scrollY + window.innerHeight > point && !showPoints.includes(point)) showPoints.push(point);
+                });
+                if (showPoints.length > 0 && (showId == 0 || showId != showPoints.length)) setShowId(showPoints.length);
+            } else if (points.length == showPoints.length) {
+                document.removeEventListener('onscroll', scrolling);
+            }
+        };
+        document.onscroll = scrolling
+    }, [showId])
+    
     return(
-        <section className="shadow-section min-h-screen relative z-40 bg-active-base py-14 max-laptop:py-10">
+        <section id="3" className="shadow-section min-h-screen relative z-40 bg-active-base py-14 max-laptop:py-10">
             <div className="flex flex-col gap-14 max-laptop:gap-[30px] wrapper items-center">
                 <h3 className="uppercase font-base text-4xl max-laptop:text-3xl max-tablet:text-2xl max-small:text-[22px] font-bold text-white">Почему <span className="text-bright">мы</span>?</h3>
                 <div className="grid max-mobile:flex max-mobile:flex-col grid-cols-3 max-laptop:grid-cols-4 gap-10 max-laptop:gap-5">
@@ -49,8 +79,10 @@ export default function WhyWe() {
                 </div>
                 <h4 className="text-white text-3xl max-laptop:text-2xl max-tablet:text-xl font-base">Прозрачный процесс разработки</h4>
                 <ul className="relative flex flex-col gap-[30px] max-tablet:gap-5 items-start">
-                    <div className="z-20 absolute border-dashed border-[3px] py-2 h-full left-[33px] max-laptop:left-7 max-mobile:left-[23px] border-bright"></div>
-                    {stages.map(stage => <Stage key={stage.id} stage={stage}/>)}
+                    {/* <div className="z-20 absolute overflow-hidden h-full">
+                        <canvas id="lineDash" className="h-full"></canvas>
+                    </div> */}
+                    {stages.map(stage => <Stage key={stage.id} stage={stage} isShow={stage.id <= showId}/>)}
                 </ul>
             </div>
         </section>
@@ -69,9 +101,9 @@ function ReasonBlock({reason}) {
     )
 }
 
-function Stage({stage}) {
+function Stage({stage, isShow}) {
     return (
-        <li className="relative z-30 flex gap-14 max-laptop:gap-5 items-center max-mobile:w-full">
+        <li id={'stage' + stage.id} className={`trasition-all duration-1000 ${!isShow && '-translate-x-1/2 opacity-0'} relative z-30 flex gap-14 max-laptop:gap-5 items-center max-mobile:w-full`}>
             <div className="flex justify-center items-center w-[70px] max-laptop:w-[60px] max-mobile:w-[50px] min-w-[50px] mobile:min-w-[60px] laptop:min-w-[70px] h-[70px] max-laptop:h-[60px] max-mobile:h-[50px] min-h-[50px] mobile:min-h-[60px] laptop:min-h-[70px] rounded-full bg-bright">
                 <span className="text-white font-base text-4xl max-laptop:text-3xl max-tablet:text-2xl">{stage.id}</span>
             </div>

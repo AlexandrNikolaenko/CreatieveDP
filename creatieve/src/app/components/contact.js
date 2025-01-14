@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BrightButton } from "./buttons";
 import { products, times, fields } from "./optData";
 import { host } from "./host";
+import Link from "next/link";
 
 let reasons = [
     {
@@ -27,33 +28,45 @@ let reasons = [
 export default function Contact () {
     let [error, setError] = useState(null);
     let [isSuccess, setIsSuccess] = useState([false, null]);
-    console.log(error, isSuccess);
+    let [isPolicy, setIsPolicy] = useState(true);
+    let [policyErr, setPolicyError] = useState(false);
+
+    function changePolicy() {
+        setIsPolicy(document.getElementById('policy').checked);
+        if (document.getElementById('policy').checked) setPolicyError(false);
+    }
 
     async function sendFormData(e) {
         e.preventDefault();
-        console.log('done');
+        if (!isPolicy) {
+            setPolicyError(true);
+            return;
+        }
         let formData = new FormData(document.getElementById('orderCallForm'));
         let body = JSON.stringify(Object.fromEntries(formData));
-        let res = await fetch(`http://${host}:5000/ordercall`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            },
-            body
-        })
-        if (res.status == 200) {
-            console.log('done')
-            setError(null);
-            setIsSuccess([true, Object.fromEntries(formData).time]);
-        } else {
-            setIsSuccess([false, null]);
-            let err = (await res.json()).error;
-            if (err) {
-                setError(err);
+        try {
+            let res = await fetch(`http://${host}/api/ordercall`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body
+            })
+            if (res.status == 200) {
+                setError(null);
+                setIsSuccess([true, Object.fromEntries(formData).time]);
             } else {
-                setError('Проверьте корректность заполнения полей')
+                setIsSuccess([false, null]);
+                let err = (await res.json()).error;
+                if (err) {
+                    setError(err);
+                } else {
+                    setError('Проверьте корректность заполнения полей');
+                }
             }
+        } catch (e) {
+            setError('Ошибка отправки формы');
         }
     }
 
@@ -67,9 +80,7 @@ export default function Contact () {
                     </ul>
                 </div>
                 <div className="flex items-center gap-10 max-laptop:gap-5 flex-row max-tablet:flex-col w-full">
-                    <form id='orderCallForm' className="flex w-full flex-col items-start max-tablet:items-center gap-y-5" onSubmit={(e) => {
-                        console.log('done');
-                        sendFormData(e)}}>
+                    <form id='orderCallForm' className="flex w-full flex-col items-start max-tablet:items-center gap-y-5" onSubmit={sendFormData}>
                         {isSuccess[0] && <label className="text-landingfrom text-base max-laptop:text-sm max-tablet:text-xs">Вы заказали звонок на {isSuccess[1]}</label>}
                         <div className="grid grid-cols-2 max-laptop:grid-cols-1 w-full gap-5 max-laptop:gap-2.5">
                             <div className="flex flex-col gap-y-5 max-laptop:gap-y-2.5">
@@ -77,6 +88,10 @@ export default function Contact () {
                                 {error != null && <label className="text-red-600 text-base max-laptop:text-sm">{error}</label>}
                             </div>
                             <textarea name="add" placeholder="Напишите, если есть, что дополнить" className="border-2 outline-none rounded-[10px] h-full min-h-[260px] max-small:min-h-[160px] px-5 max-mobile:px-4 py-4 max-mobile:py-3 border-base-color active:border-active-base focus:border-active-base placeholder:font-base"></textarea>
+                        </div>
+                        <div className="flex gap-2.5 items-center">
+                            <input type="checkbox" id="policy" name="policy" defaultChecked onChange={changePolicy} className="appearance-auto w-4 h-4"/>
+                            <label htmlFor='policy' className={`${policyErr && 'text-red-600'}`}>Ознакомлен(а) с <Link href={'https://st-152-fz.ru/index_polic.php?name=Николаенко%20Александр%20Иванович&site=creatieve.ru&email=nikol.alex06@mail.ru'} className={`underline`}>политикой конфиденциальности</Link> и принимаю условия обработки персональных данных</label>
                         </div>
                         <BrightButton text={'Заказать звонок'}/>
                     </form>

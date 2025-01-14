@@ -20,6 +20,6 @@ services:
       - dev
 
   frontend:
-    build: ./cretieve
+    build: ./creatieve
     networks:
       - dev

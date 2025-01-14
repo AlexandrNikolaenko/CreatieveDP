@@ -120,8 +120,8 @@ function DescProductBlock({product}) {
                     <h5 className="text-white font-ital text-2xl max-laptop:text-xl max-tablet:text-lg italic">Что это?</h5>
                     <p className="text-white text-base max-laptop:text-sm max-tablet:text-xs">{product.fullDesc}</p>
                     <h5 className="text-white font-ital text-2xl max-laptop:text-xl max-tablet:text-lg italic">Дополнительно</h5>
-                    <ul className="leading-relaxed list-inside">
-                        {product.add.map(service => <li key={service.id} className="text-white text-base max-laptop:text-sm max-tablet:text-xs list-disc">{service.service} <span>{service.price}</span></li>)}
+                    <ul className="leading-relaxed flex flex-col gap-y-2 list-inside">
+                        {product.add.map(service => <li key={service.id} className="text-white text-base max-laptop:text-sm max-tablet:text-xs list-disc">{service.service} <span className="font-ital font-bold">{service.price}</span></li>)}
                     </ul>
                 </div>
             </li>
@@ -141,7 +141,7 @@ function ProductBlock({product, changer}) {
     }
 
     return (
-        <button onClick={scroller} className={`productBlock text-left flex flex-col h-full gap-y-6 max-laptop:gap-y-5 max-tablet:gap-y-4 transition-all *:hover:text-white ${product.activeBg} cursor-pointer p-[25px] max-tablet:p-5 shadow-base rounded-[10px] ${product.id == 4 ? 'col-start-3 max-laptop:col-start-auto' : ''} col-span-2`}>
+        <button id={product.id+'scrollButton'} onClick={scroller} className={`productBlock text-left flex flex-col h-full gap-y-6 max-laptop:gap-y-5 max-tablet:gap-y-4 transition-all *:hover:text-white ${product.activeBg} cursor-pointer p-[25px] max-tablet:p-5 shadow-base rounded-[10px] ${product.id == 4 ? 'col-start-3 max-laptop:col-start-auto' : ''} col-span-2`}>
             <h4 className="text-active-base font-base text-2xl max-laptop:text-xl max-tablet:text-lg font-bold transition-all">{product.name}</h4>
             <p className="text-bright font-base text-base  max-laptop:text-sm max-tablet:text-xs transition-all">от <span className="text-inherit text-xl max-laptop:text-lg">{product.cost}</span></p>
             <p className="text-active-base font-base text-base max-desktop:text-sm max-tablet:text-xs transition-all">срок реализации от <span className="text-inherit text-xl max-desktop:text-lg">{product.time} дней</span></p>
