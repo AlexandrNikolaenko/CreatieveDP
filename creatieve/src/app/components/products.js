@@ -63,31 +63,31 @@ function SlideButton({changeId, current}) {
     return (
         <div className={`slideButton overflow-hidden rounded-[10px] h-min bg-active-base`}>
             <button onClick={() => {
-                if (current > 1) changeId(current - 1);
-                else changeId(products.length);
-            }} 
+                if (current < products.length) changeId(current + 1);
+                else changeId(1);
+            }}
             onMouseUp={() => {
-                if (current > 1) changeId(current - 1);
-                else changeId(products.length);
+                if (current < products.length) changeId(current + 1);
+                else changeId(1);
             }} 
             onTouchEnd={() => {
-                if (current > 1) changeId(current - 1);
-                else changeId(products.length);
+                if (current < products.length) changeId(current + 1);
+                else changeId(1);
             }}
             className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
                 <Image alt='turn last' src={'/chevron-left.svg'} width={24} height={24}/>
             </button>
             <button onClick={() => {
-                if (current < products.length) changeId(current + 1);
-                else changeId(1);
-            }}
+                if (current > 1) changeId(current - 1);
+                else changeId(products.length);
+            }} 
             onMouseUp={() => {
-                if (current < products.length) changeId(current + 1);
-                else changeId(1);
+                if (current > 1) changeId(current - 1);
+                else changeId(products.length);
             }} 
             onTouchEnd={() => {
-                if (current < products.length) changeId(current + 1);
-                else changeId(1);
+                if (current > 1) changeId(current - 1);
+                else changeId(products.length);
             }}
             className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
                 <Image alt='turn next' src={'/chevron-right.svg'} width={24} height={24}/>

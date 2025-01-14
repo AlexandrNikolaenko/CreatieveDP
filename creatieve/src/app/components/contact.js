@@ -45,7 +45,7 @@ export default function Contact () {
         let formData = new FormData(document.getElementById('orderCallForm'));
         let body = JSON.stringify(Object.fromEntries(formData));
         try {
-            let res = await fetch(`http://${host}/api/ordercall`, {
+            let res = await fetch(`/api/ordercall`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
