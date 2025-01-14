@@ -24,6 +24,11 @@ app.use(cors());
 
 app.post('/ordercall', function (request, response) {
     let body = request.body;
+    console.log('done');
+    response.set({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    });
 
     function sendMail() {
         async function main(text) {
