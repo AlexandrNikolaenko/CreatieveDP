@@ -8,7 +8,8 @@ export const metadata = {
   author: "Alexander, nikol.alex06@mail.ru",
   replyTo: "nikol.alex06@mail.ru",
   url: "https://creatieve.ru",
-  identifierURL: "https://creatieve.ru"
+  identifierURL: "https://creatieve.ru",
+  yandex_site_verification: "8df417d384e5203c"
 };
 
 export default function RootLayout({ children }) {
