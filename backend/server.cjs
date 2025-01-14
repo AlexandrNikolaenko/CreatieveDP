@@ -56,18 +56,22 @@ app.post('/ordercall', function (request, response) {
         return true;
     }
 
-    if (checkName() && checkTel()) {
-        console.log('Mail is sent')
-        sendMail();
-        response.status(200);
-        response.send({error: null});
-    } else if (!checkName() && checkTel()) {
-        response.status(400);
-        response.send({error: 'Имя не должно содержать цифры или специальные символы'});
-    } else if (checkName() && !checkTel()) {
-        response.status(400);
-        response.send({error: 'Поле телефон заполнено некорректно'});
-    } else {
+    try {
+        if (checkName() && checkTel()) {
+            console.log('Mail is sent')
+            sendMail();
+            response.status(200);
+            response.send({error: null});
+        } else if (!checkName() && checkTel()) {
+            response.status(400);
+            response.send({error: 'Имя не должно содержать цифры или специальные символы'});
+        } else if (checkName() && !checkTel()) {
+            response.status(400);
+            response.send({error: 'Поле телефон заполнено некорректно'});
+        } else {
+            response.status(400);
+        }
+    } catch (e) {
         response.status(400);
     }
 })
