@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import OrderButton from "./buttons";
 import { products } from "./optData";
@@ -36,14 +36,14 @@ export default function Products() {
                 <OrderButton />
                 <div id="block" className="flex flex-col w-full gap-y-5 rounded-[20px] max-laptop:rounded-none shadow-inner max-laptop:shadow-none p-5 max-laptop:p-0">
                     <div className="flex justify-between px-5">
-                        <div id="slideName"  className="h-[45px] overflow-y-hidden relative">
-                            <ul id="nameLine" className="flex flex-col gap-3">
+                        <div id="slideName"  className="h-[45px] overflow-y-hidden max-tablet:overflow-scroll relative">
+                            <ul id="nameLine" className="flex flex-col gap-3 pb-3">
                                 {products.map(product => <ProductTitle product={product} key={product.id}/>)}
                             </ul>
                         </div>
                         {window.innerWidth >= 521 && <SlideButton changeId={setShowId} current={showId}/>}
                     </div>  
-                    <div id="slideProd" className="w-full overflow-x-hidden relative">
+                    <div id="slideProd" className="w-full overflow-x-hidden max-tablet:overflow-scroll relative">
                         <ul id="blockLine" className="flex gap-x-5 w-max">
                             {products.map(product => <DescProductBlock product={product} key={product.id}/>)}
                             <div className="bg-white w-[3px] rounded"></div>
@@ -65,13 +65,31 @@ function SlideButton({changeId, current}) {
             <button onClick={() => {
                 if (current > 1) changeId(current - 1);
                 else changeId(products.length);
-            }} className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
+            }} 
+            onMouseUp={() => {
+                if (current > 1) changeId(current - 1);
+                else changeId(products.length);
+            }} 
+            onTouchEnd={() => {
+                if (current > 1) changeId(current - 1);
+                else changeId(products.length);
+            }}
+            className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
                 <Image alt='turn last' src={'/chevron-left.svg'} width={24} height={24}/>
             </button>
             <button onClick={() => {
                 if (current < products.length) changeId(current + 1);
                 else changeId(1);
-            }} className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
+            }}
+            onMouseUp={() => {
+                if (current < products.length) changeId(current + 1);
+                else changeId(1);
+            }} 
+            onTouchEnd={() => {
+                if (current < products.length) changeId(current + 1);
+                else changeId(1);
+            }}
+            className="px-5 py-2.5 transition-all duration-300 bg-active-base hover:bg-dark-base">
                 <Image alt='turn next' src={'/chevron-right.svg'} width={24} height={24}/>
             </button>
         </div>
