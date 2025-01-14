@@ -8,4 +8,4 @@ COPY . /usr/src/app
 
 EXPOSE 5000
 
-CMD ["pm2-runtime", "npm", "--", "start"]
+CMD 'pm2 start server.cjs'
