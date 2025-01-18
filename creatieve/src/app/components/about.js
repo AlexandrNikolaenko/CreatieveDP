@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 import Image from "next/image";
 import scrollToBlock, { sectionsId } from "./optData";
+import aboutPic from '../../../public/Обложка.png'
 
 export default function About() {
     return (
@@ -14,7 +14,7 @@ export default function About() {
                     <p className="text-base max-laptop:text-sm max-tablet:text-xs font-base">Мы <span className="text-active-base">молодая</span> и <span className="text-active-base">креативная команда</span> разработчиков. Каждый член нашей команды имеет опыт работы в сфере веб-разработки.
                     Для нас очень <span className="text-active-base">важен</span> каждый <span className="text-active-base">клиент</span>, и мы <span className="text-active-base">дорожим</span> нашей <span className="text-active-base">репутацией</span>, поэтому мы создаем только уникальные, качественные и современные продукты.</p>
                 </div>
-                <img alt="Let's work with us!" src={'/Обложка.png'} className="w-full max-w-[650px] h-auto"/>
+                <Image alt="Let's work with us!" src={aboutPic} className="static w-full max-w-[650px]"/>
             </div>
             <button onClick={() => {
                     let blockId = sectionsId.filter(section => section.name == 'portfolio')[0].id

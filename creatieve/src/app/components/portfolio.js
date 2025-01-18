@@ -1,27 +1,34 @@
-/* eslint-disable @next/next/no-img-element */
+import urlImgDesk1 from '../../../public/Desktop - 1.jpg';
+import urlImgMob1 from '../../../public/Android Large - 1.jpg';
+import urlImgDesk2 from '../../../public/Desktop - Profile page.jpg';
+import urlImgMob2 from '../../../public/Profile page.jpg';
+import urlImgDesk3 from '../../../public/Main page 2 variant.jpg';
+import urlImgMob3 from '../../../public/Android Large - 1.jpg';
+import Image from 'next/image';
+
 let works = [
     {
         id: 1,
         title: 'OlimpEducation',
         desc: 'Это веб-приложение помогает школьникам готовиться к олимпиадам, предоставляя задания по определенным выбранным критериям.',
-        urlImgDesk: '/Desktop - 1.jpg',
-        urlImgMob: '/Android Large - 1.jpg',
+        urlImgDesk: urlImgDesk1,
+        urlImgMob: urlImgMob1,
         isReverse: false
     },
     {
         id: 2,
         title: 'VTB.fines',
         desc: 'Это приложение наша команда разрабатывала как конкурентное преимущество банка ВТБ. В нем можно осуществлять платежи, отслеживать свой рейтинг и прочее.',
-        urlImgDesk: '/Desktop - Profile page.jpg',
-        urlImgMob: '/Profile page.jpg',
+        urlImgDesk: urlImgDesk2,
+        urlImgMob: urlImgMob2,
         isReverse: true
     },
     {
         id: 3,
         title: 'Neotechnica',
         desc: 'Этот корпоративный сайт находится в процессе разработки на смену устаревшей версии сайта с сохранением стилистики, цветов и логотипов компании',
-        urlImgDesk: '/Main page 2 variant.jpg',
-        urlImgMob: '/Android Large - 1.jpg',
+        urlImgDesk: urlImgDesk3,
+        urlImgMob: urlImgMob3,
         isReverse: false
     }
 ]
@@ -47,10 +54,10 @@ function Work({work}) {
         <li className={`flex ${work.isReverse && 'flex-row-reverse'} max-laptop:flex-col-reverse gap-0 max-laptop:gap-5 items-center w-full`}>
             <div className="w-1/2 max-laptop:w-full flex gap-5 max-mobile:gap-2.5 max-laptop:max-w-[673px]">
                 <div className="w-[492px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <img alt={work.title} className="w-full h-auto" src={work.urlImgDesk}></img>
+                    <Image alt={work.title} className="w-full h-auto" src={work.urlImgDesk} />
                 </div>
                 <div className="w-[161px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <img alt={work.title} className="w-full h-auto" src={work.urlImgMob}></img>
+                    <Image alt={work.title} className="w-full h-auto" src={work.urlImgMob} />
                 </div>
             </div>
             <div className={`flex flex-col gap-7 max-mobile:gap-2.5 ${work.isReverse ? 'pr-10' : 'pl-10'} max-laptop:p-0`}>
