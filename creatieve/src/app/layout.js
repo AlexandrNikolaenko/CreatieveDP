@@ -50,7 +50,8 @@ export const metadata = {
     ['replyTo']: "nikol.alex06@mail.ru",
     ['url']: "https://creatieve.ru",
     ['identifierURL']: "https://creatieve.ru",
-    ['yandex-verification']: "8df417d384e5203c"
+    ['yandex-verification']: "8df417d384e5203c",
+    ['google-site-verification']: 'G8zGshAcdxmQg5OjLJF-fW2Xaw2qvum8Ss3AFgxcht0'
   }
 };
 
