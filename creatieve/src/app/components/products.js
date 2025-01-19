@@ -85,7 +85,7 @@ function SlideButton({changeId, current}) {
 function ProductTitle({product}){
     return (
         <li id={`title${product.id}`}>
-            <h3 className="font-base font-bold text-4xl max-laptop:text-3xl max-tablet:text-2xl max-small:text-xl text-white">{product.name}</h3>
+            <h2 className="font-base font-bold text-4xl max-laptop:text-3xl max-tablet:text-2xl max-small:text-xl text-white">{product.name}</h2>
         </li>
     )
 }
