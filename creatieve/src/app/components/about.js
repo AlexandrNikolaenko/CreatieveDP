@@ -10,7 +10,7 @@ export default function About() {
                 <div className="flex flex-col gap-y-14 max-laptop:gap-y-10 max-tablet:gap-y-[30px]">
                     <h3 className="text-base-color font-bold font-base text-2xl max-laptop:text-xl max-tablet:text-lg max-small:text-base">Нужен сайт или веб-приложение?<br/>
                     <span className="text-bright font-bold text-2xl max-laptop:text-xl max-tablet:text-lg max-small:text-base">Вы по адресу!</span></h3>
-                    <h1 className="text-dark-base text-5xl max-laptop:text-4xl max-tablet:text-3xl max-small:text-2xl font-attention uppercase">Веб-разработка под ключ</h1>
+                    <h1 className="text-dark-base text-5xl max-laptop:text-4xl max-tablet:text-3xl max-small:text-2xl font-attention uppercase">Веб-разработка <span className="text-nowrap">под ключ</span></h1>
                     <p className="text-base max-laptop:text-sm max-tablet:text-xs font-base">Мы <span className="text-active-base">молодая</span> и <span className="text-active-base">креативная команда</span> разработчиков. Каждый член нашей команды имеет опыт работы в сфере веб-разработки.
                     Для нас очень <span className="text-active-base">важен</span> каждый <span className="text-active-base">клиент</span>, и мы <span className="text-active-base">дорожим</span> нашей <span className="text-active-base">репутацией</span>, поэтому мы создаем только уникальные, качественные и современные продукты.</p>
                 </div>
