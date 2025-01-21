@@ -5,6 +5,8 @@ import urlImgMob2 from '../../../public/Profile page.jpg';
 import urlImgDesk3 from '../../../public/Main page 2 variant.jpg';
 import urlImgMob3 from '../../../public/iPhone 8 - 1.jpg';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { showCheck, delta } from './optData';
 
 let works = [
     {
@@ -50,8 +52,24 @@ export default function Portfolio() {
 }
 
 function Work({work}) {
+    let [isHidden, setIsHidden] = useState(true);
+
+    useEffect(function() {
+        if (isHidden && window.innerHeight - delta > document.getElementById(`work${work.id}`).getBoundingClientRect().top) setIsHidden(false);
+        else if (isHidden && window.innerHeight - delta < document.getElementById(`work${work.id}`).getBoundingClientRect().top) {
+            let func = function (arg) {
+                if (window.innerHeight - delta > document.getElementById(`work${work.id}`).getBoundingClientRect().top) {
+                    setIsHidden(false);
+                    clearInterval(arg);
+                    return true
+                } else return false;
+            }
+            showCheck(func);
+        } else return
+    }, [isHidden, work.id]);
+
     return (
-        <li className={`flex ${work.isReverse && 'flex-row-reverse'} max-laptop:flex-col-reverse gap-0 max-laptop:gap-5 items-center w-full`}>
+        <li id={`work${work.id}`} className={`flex ${work.isReverse && 'flex-row-reverse'} transition-all duration-700 ${isHidden && 'opacity-0 translate-y-6'} max-laptop:flex-col-reverse gap-0 max-laptop:gap-5 items-center w-full`}>
             <div className="w-1/2 max-laptop:w-full flex gap-5 max-mobile:gap-2.5 max-laptop:max-w-[673px]">
                 <div className="w-[492px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
                     <Image alt={work.title} className="w-full h-auto" src={work.urlImgDesk} />

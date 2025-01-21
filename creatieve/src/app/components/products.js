@@ -3,11 +3,26 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import OrderButton from "./buttons";
-import { products } from "./optData";
+import { products, showCheck, delta } from "./optData";
 import Link from "next/link";
 
 export default function Products() {
     let [showId, setShowId] = useState(1);
+    let [isHidden, setIsHidden] = useState(true);
+
+    useEffect(function() {
+        if (isHidden && window.innerHeight - delta > document.getElementById('slideProd').getBoundingClientRect().top) setIsHidden(false);
+        else if (isHidden && window.innerHeight - delta < document.getElementById('slideProd').getBoundingClientRect().top) {
+            let func = function (arg) {
+                if (window.innerHeight - delta > document.getElementById('slideProd').getBoundingClientRect().top) {
+                    setIsHidden(false)
+                    clearInterval(arg);
+                    return true
+                } else return false;
+            }
+            showCheck(func);
+        } else return
+    }, [isHidden]);
 
     useEffect(() => {
         let slideProd = document.getElementById("slideProd");
@@ -43,7 +58,7 @@ export default function Products() {
                         </div>
                         {window.innerWidth >= 521 && <SlideButton changeId={setShowId} current={showId}/>}
                     </div>  
-                    <div id="slideProd" className="w-full overflow-x-hidden max-tablet:overflow-scroll relative">
+                    <div id="slideProd" className={`w-full transition-all duration-700 ${isHidden && 'opacity-0 -translate-x-10'} overflow-x-hidden max-tablet:overflow-scroll relative`}>
                         <ul id="blockLine" className="flex gap-x-5 w-max">
                             {products.map(product => <DescProductBlock product={product} key={product.id}/>)}
                             <div className="bg-white w-[3px] rounded"></div>
@@ -132,6 +147,22 @@ function DescProductBlock({product}) {
 }
 
 function ProductBlock({product, changer}) {
+    let [isHidden, setIsHidden] = useState(true);
+
+    useEffect(function() {
+        if (isHidden && window.innerHeight - delta > document.getElementById(product.id+'scrollButton').getBoundingClientRect().top) setIsHidden(false);
+        else if (isHidden && window.innerHeight - delta < document.getElementById(product.id+'scrollButton').getBoundingClientRect().top) {
+            let func = function (arg) {
+                if (window.innerHeight - delta > document.getElementById(product.id+'scrollButton').getBoundingClientRect().top) {
+                    setIsHidden(false)
+                    clearInterval(arg);
+                    return true
+                } else return false;
+            }
+            showCheck(func);
+        } else return
+    }, [isHidden, product.id]);
+
     function scroller() {
         changer(product.id);
         let block = document.getElementById('block').getBoundingClientRect();
@@ -143,7 +174,7 @@ function ProductBlock({product, changer}) {
     }
 
     return (
-        <button id={product.id+'scrollButton'} onClick={scroller} className={`productBlock text-left flex flex-col h-full gap-y-6 max-laptop:gap-y-5 max-tablet:gap-y-4 transition-all *:hover:text-white ${product.activeBg} cursor-pointer p-[25px] max-tablet:p-5 shadow-base rounded-[10px] ${product.id == 4 ? 'col-start-3 max-laptop:col-start-auto' : ''} col-span-2`}>
+        <button id={product.id+'scrollButton'} onClick={scroller} className={`productBlock text-left flex flex-col h-full gap-y-6 max-laptop:gap-y-5 max-tablet:gap-y-4 transition-all duration-700 ${isHidden && 'opacity-0 translate-y-6'} *:hover:text-white ${product.activeBg} cursor-pointer p-[25px] max-tablet:p-5 shadow-base rounded-[10px] ${product.id == 4 ? 'col-start-3 max-laptop:col-start-auto' : ''} col-span-2`}>
             <h4 className="text-active-base font-base text-2xl max-laptop:text-xl max-tablet:text-lg font-bold transition-all">{product.name}</h4>
             <p className="text-bright font-base text-base  max-laptop:text-sm max-tablet:text-xs transition-all">от <span className="text-inherit text-xl max-laptop:text-lg">{product.cost}</span></p>
             <p className="text-active-base font-base text-base max-desktop:text-sm max-tablet:text-xs transition-all">срок реализации от <span className="text-inherit text-xl max-desktop:text-lg">{product.time} дней</span></p>

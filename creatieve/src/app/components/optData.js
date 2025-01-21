@@ -1,3 +1,5 @@
+export const delta = 100
+
 export const sectionsId = [
     {
         id: 1,
@@ -281,3 +283,9 @@ export const fields = [
         placeholder: 'Ваш номер телефона'
     }
 ];
+
+export function showCheck(func) {
+    let interval = setInterval(function (){
+        if (func()) clearInterval(interval);
+    }, 100);
+}

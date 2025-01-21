@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
+import { showCheck, delta } from "./optData";
 
 let reasons = [
     {
@@ -79,9 +80,6 @@ export default function WhyWe() {
                 </div>
                 <h4 className="text-white text-3xl max-laptop:text-2xl max-tablet:text-xl font-base">Прозрачный процесс разработки</h4>
                 <ul className="relative flex flex-col gap-[30px] max-tablet:gap-5 items-start">
-                    {/* <div className="z-20 absolute overflow-hidden h-full">
-                        <canvas id="lineDash" className="h-full"></canvas>
-                    </div> */}
                     {stages.map(stage => <Stage key={stage.id} stage={stage} isShow={stage.id <= showId}/>)}
                 </ul>
             </div>
@@ -90,8 +88,24 @@ export default function WhyWe() {
 }
 
 function ReasonBlock({reason}) {
+    let [isHidden, setIsHidden] = useState(true);
+    
+    useEffect(function() {
+        if (isHidden && window.innerHeight - delta > document.getElementById(`reason${reason.id}`).getBoundingClientRect().top) setIsHidden(false);
+        else if (isHidden && window.innerHeight - delta < document.getElementById(`reason${reason.id}`).getBoundingClientRect().top) {
+            let func = function (arg) {
+                if (window.innerHeight - delta > document.getElementById(`reason${reason.id}`).getBoundingClientRect().top) {
+                    setIsHidden(false)
+                    clearInterval(arg);
+                    return true
+                } else return false;
+            }
+            showCheck(func);
+        } else return
+    }, [isHidden, reason.id]);
+
     return(
-        <div className={`p-[25px] max-mobile:p-5 bg-dark-base flex flex-col gap-y-10 max-laptop:gap-y-5 rounded-[10px] shadow-base col-span-1 max-laptop:col-span-2 ${reason.id == 3 && 'max-laptop:col-start-2'}`}>
+        <div id={`reason${reason.id}`} className={`p-[25px] max-mobile:p-5 bg-dark-base transition-all duration-700 ${isHidden && 'opacity-0 translate-y-6'} flex flex-col gap-y-10 max-laptop:gap-y-5 rounded-[10px] shadow-base col-span-1 max-laptop:col-span-2 ${reason.id == 3 && 'max-laptop:col-start-2'}`}>
             <div className="flex items-start gap-2">
                 <span className="text-white text-3xl max-laptop:text-2xl max-tablet:text-xl font-base">{reason.id}.</span>
                 <h4 className="text-white text-3xl max-laptop:text-2xl max-tablet:text-xl font-base">{reason.title}</h4>
@@ -103,7 +117,7 @@ function ReasonBlock({reason}) {
 
 function Stage({stage, isShow}) {
     return (
-        <li id={'stage' + stage.id} className={`trasition-all duration-1000 ${!isShow && '-translate-x-1/2 opacity-0'} relative z-30 flex gap-14 max-laptop:gap-5 items-center max-mobile:w-full`}>
+        <li id={'stage' + stage.id} className={`trasition-all duration-700 ${!isShow && '-translate-x-1/3 opacity-0'} relative z-30 flex gap-14 max-laptop:gap-5 items-center max-mobile:w-full`}>
             <div className="flex justify-center items-center w-[70px] max-laptop:w-[60px] max-mobile:w-[50px] min-w-[50px] mobile:min-w-[60px] laptop:min-w-[70px] h-[70px] max-laptop:h-[60px] max-mobile:h-[50px] min-h-[50px] mobile:min-h-[60px] laptop:min-h-[70px] rounded-full bg-bright">
                 <span className="text-white font-base text-4xl max-laptop:text-3xl max-tablet:text-2xl">{stage.id}</span>
             </div>
