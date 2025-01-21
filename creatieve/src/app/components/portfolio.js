@@ -3,7 +3,7 @@ import urlImgMob1 from '../../../public/Android Large - 1.jpg';
 import urlImgDesk2 from '../../../public/Desktop - Profile page.jpg';
 import urlImgMob2 from '../../../public/Profile page.jpg';
 import urlImgDesk3 from '../../../public/Main page 2 variant.jpg';
-import urlImgMob3 from '../../../public/Android Large - 1.jpg';
+import urlImgMob3 from '../../../public/iPhone 8 - 1.jpg';
 import Image from 'next/image';
 
 let works = [
