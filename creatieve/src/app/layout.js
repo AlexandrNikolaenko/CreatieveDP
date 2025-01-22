@@ -56,7 +56,8 @@ export const metadata = {
     ['og:url']: "https://creatieve.ru",
     ['identifierURL']: "https://creatieve.ru",
     ['yandex-verification']: "8df417d384e5203c",
-    ['google-site-verification']: 'G8zGshAcdxmQg5OjLJF-fW2Xaw2qvum8Ss3AFgxcht0'
+    ['google-site-verification']: 'G8zGshAcdxmQg5OjLJF-fW2Xaw2qvum8Ss3AFgxcht0',
+    ['og:image']: "https://creatieve.ru/opengraph-image.png"
   }
 };
 
