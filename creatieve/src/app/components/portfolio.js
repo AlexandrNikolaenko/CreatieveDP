@@ -5,7 +5,7 @@ import urlImgMob2 from '../../../public/Profile page.jpg';
 import urlImgDesk3 from '../../../public/Main page 2 variant.jpg';
 import urlImgMob3 from '../../../public/iPhone 8 - 1.jpg';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { showCheck, delta } from './optData';
 
 let works = [
@@ -72,10 +72,14 @@ function Work({work}) {
         <li id={`work${work.id}`} className={`flex ${work.isReverse && 'flex-row-reverse'} transition-all duration-700 ${isHidden && 'opacity-0 translate-y-6'} max-laptop:flex-col-reverse gap-0 max-laptop:gap-5 items-center w-full`}>
             <div className="w-1/2 max-laptop:w-full flex gap-5 max-mobile:gap-2.5 max-laptop:max-w-[673px]">
                 <div className="w-[492px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <Image alt={work.title} className="w-full h-auto" src={work.urlImgDesk} />
+                    <Suspense>
+                        <Image alt={work.title} className="w-full h-auto" src={work.urlImgDesk} />
+                    </Suspense>
                 </div>
                 <div className="w-[161px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <Image alt={work.title} className="w-full h-auto" src={work.urlImgMob} />
+                    <Suspense>
+                        <Image alt={work.title} className="w-full h-auto" src={work.urlImgMob} />
+                    </Suspense>
                 </div>
             </div>
             <div className={`flex flex-col gap-7 max-mobile:gap-2.5 ${work.isReverse ? 'pr-10' : 'pl-10'} max-laptop:p-0`}>
