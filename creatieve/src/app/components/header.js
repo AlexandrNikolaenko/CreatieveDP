@@ -11,7 +11,9 @@ export default function Header() {
     let position = useRef(window.scrollY);
     let lastTimeout = useRef([]);
 
-    screen.addEventListener("orientationchange", location.reload);
+    useEffect(() => {
+        screen.addEventListener("orientationchange", location.reload);
+    });
 
     function hidder() {
         let timeout = setTimeout(() => setIsHidden(true), 2000);
