@@ -11,10 +11,10 @@ export default function Products() {
     let [isHidden, setIsHidden] = useState(true);
 
     useEffect(function() {
-        if (isHidden && window.innerHeight - delta > document.getElementById('slideProd').getBoundingClientRect().top) setIsHidden(false);
-        else if (isHidden && window.innerHeight - delta < document.getElementById('slideProd').getBoundingClientRect().top) {
+        if (isHidden && window.innerHeight - delta > document.getElementById('block').getBoundingClientRect().top) setIsHidden(false);
+        else if (isHidden && window.innerHeight - delta < document.getElementById('block').getBoundingClientRect().top) {
             let func = function (arg) {
-                if (window.innerHeight - delta > document.getElementById('slideProd').getBoundingClientRect().top) {
+                if (window.innerHeight - delta > document.getElementById('block').getBoundingClientRect().top) {
                     setIsHidden(false)
                     clearInterval(arg);
                     return true
