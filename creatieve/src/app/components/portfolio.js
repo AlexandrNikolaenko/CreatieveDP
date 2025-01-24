@@ -7,6 +7,7 @@ import urlImgMob3 from '../../../public/iPhone 8 - 1.jpg';
 import Image from 'next/image';
 import { Suspense, useEffect, useState } from 'react';
 import { showCheck, delta } from './optData';
+import Plug from './plug';
 
 let works = [
     {
@@ -72,12 +73,12 @@ function Work({work}) {
         <li id={`work${work.id}`} className={`flex ${work.isReverse && 'flex-row-reverse'} transition-all duration-700 ${isHidden && 'opacity-0 translate-y-6'} max-laptop:flex-col-reverse gap-0 max-laptop:gap-5 items-center w-full`}>
             <div className="w-1/2 max-laptop:w-full flex gap-5 max-mobile:gap-2.5 max-laptop:max-w-[673px]">
                 <div className="w-[492px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <Suspense>
+                    <Suspense fallback={<Plug />}>
                         <Image alt={work.title} className="w-full h-auto" src={work.urlImgDesk} />
                     </Suspense>
                 </div>
                 <div className="w-[161px] h-[350px] max-mobile:h-[268px] max-[480px]:h-[227px] max-small:h-[186px] overflow-y-scroll rounded-[10px]">
-                    <Suspense>
+                    <Suspense fallback={<Plug />}>
                         <Image alt={work.title} className="w-full h-auto" src={work.urlImgMob} />
                     </Suspense>
                 </div>
