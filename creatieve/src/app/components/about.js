@@ -1,7 +1,8 @@
 'use client'
 import Image from "next/image";
 import scrollToBlock, { sectionsId } from "./optData";
-import aboutPic from '../../../public/Обложка.png'
+import aboutPic from '../../../public/Обложка.png';
+import ArrowDown from '../../../public/arrow-down.svg';
 import { Suspense } from "react";
 import Plug from "./plug";
 
@@ -17,7 +18,7 @@ export default function About() {
                     Для нас очень <span className="text-active-base">важен</span> каждый <span className="text-active-base">клиент</span>, и мы <span className="text-active-base">дорожим</span> нашей <span className="text-active-base">репутацией</span>, поэтому мы создаем только уникальные, качественные и современные продукты.</p>
                 </div>
                 <Suspense fallback={<Plug />}>
-                    <Image alt="Let's work with us!" src={aboutPic} className="static w-full max-w-[650px]"/>
+                    <Image alt="Let's work with us!" src={aboutPic} className="static w-full max-w-[650px]" priority/>
                 </Suspense>
             </div>
             <button onClick={() => {
@@ -26,7 +27,7 @@ export default function About() {
                 }} className="shadow-small flex gap-x-3 items-center py-2.5 px-4 rounded-base transition-all duration-300 bg-base-color hover:bg-active-base focus:bg-active-base">
                 <span className="text-white font-normal text-2xl max-laptop:text-xl max-tablet:text-lg max-small:text-base">Наши работы</span>
                 <Suspense fallback={<Plug />}>
-                    <Image alt="To portfolio" src={'/arrow-down.svg'} width={24} height={24}/>
+                    <Image alt="To portfolio" src={ArrowDown} width={24}/>
                 </Suspense>
             </button>
         </section>

@@ -47,13 +47,13 @@ export const metadata = {
   openGraph: {
     title: "Разработка недорогих сайтов под ключ в СПб",
     description: "Мы команда разработчиков CREATIEVE занимаемся разработкой и продвижением сайтов и веб-приложений различной сложности под ключ по ценам ниже рынка",
+    url: "https://creatieve.ru"
   },
   other: {
     ['robots']: "index,follow",
     ['author']: "Alexander, nikol.alex06@mail.ru",
     ['replyTo']: "nikol.alex06@mail.ru",
     ['url']: "https://creatieve.ru",
-    ['og:url']: "https://creatieve.ru",
     ['identifierURL']: "https://creatieve.ru",
     ['yandex-verification']: "8df417d384e5203c",
     ['google-site-verification']: 'G8zGshAcdxmQg5OjLJF-fW2Xaw2qvum8Ss3AFgxcht0'
