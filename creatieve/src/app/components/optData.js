@@ -280,7 +280,7 @@ export const fields = [
         id: 4,
         name: 'tel',
         type: 'tel',
-        placeholder: 'Ваш номер телефона'
+        placeholder: 'Ваш номер телефона +7**********'
     }
 ];
 
