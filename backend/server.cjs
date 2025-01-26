@@ -59,10 +59,10 @@ app.post('/ordercall', function (request, response) {
 
     function checkTel() {
         let isCheck = true;
-        if (!body.tel.match(/+?[78]\d{10}/)){
-            isCheck = false
+        if (!/\d{11}/.test(body.tel) || /\d{12}/.test(body.tel)){
+            isCheck = false;
         }
-        return isCheck
+        return isCheck;
     }
 
     try {
